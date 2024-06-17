@@ -1,0 +1,144 @@
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MediForecast</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">MediForecast</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/feedback}">Feedback</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/findDoctor}">Find Doctor</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/contactUs}">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Predicted Result</h1>
+       
+        
+        <div th:if="${predictionResult}">
+            <h2 class="mt-5">Predicted Result: <span th:text="${predictionResult}"></span></h2>
+            <div th:if="${predictionResult == 'Heart Disease'}">
+                <h3 class="mt-4">Precautions:</h3>
+               <ul>
+                    <li>Take medication as prescribed.</li>
+                    <li>Follow a heart-healthy diet low in saturated fats and cholesterol.</li>
+                    <li>Exercise regularly under medical supervision.</li>
+                    <li>Avoid smoking and limit alcohol intake.</li>
+                    <li>Maintain a healthy weight.</li>
+                    <li>Monitor blood pressure and cholesterol levels regularly.</li>
+                    <li>Manage stress through relaxation techniques.</li>
+                    <li>Get regular check-ups and follow-up with healthcare providers.</li>
+                    <li>Avoid excessive salt and sugar consumption.</li>
+                    <li>Engage in activities that promote overall well-being.</li>
+                </ul>
+            </div>
+            <div th:if="${predictionResult == 'No Heart Disease'}">
+               <h3 class="mt-4">Precautions to Maintain Heart Health:</h3>
+                <ul>
+                    <li>Adopt a balanced diet rich in fruits, vegetables, and whole grains.</li>
+                    <li>Engage in regular physical activity such as walking, jogging, or cycling.</li>
+                    <li>Avoid smoking and secondhand smoke exposure.</li>
+                    <li>Maintain a healthy weight and body mass index (BMI).</li>
+                    <li>Manage stress through relaxation techniques like yoga or meditation.</li>
+                    <li>Monitor blood pressure and cholesterol levels periodically.</li>
+                    <li>Limit alcohol consumption to moderate levels.</li>
+                    <li>Get adequate sleep of 7-8 hours per night.</li>
+                    <li>Avoid processed foods high in trans fats and sugar.</li>
+                    <li>Stay hydrated by drinking plenty of water throughout the day.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+<footer class="text-center bg-body-tertiary ">
+  <!-- Grid container -->
+  <div class="container pt-4 ">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <!-- Twitter -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+      <!-- Google -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-google"></i
+      ></a>
+
+      <!-- Instagram -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-linkedin"></i
+      ></a>
+      <!-- Github -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2024 Copyright:
+    <a class="text-body" href="">MediForecast</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+</html>

@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Feedback</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+	<style>
+        .feedback-board {
+            max-height: 400px; /* Set the maximum height for the feedback board */
+            overflow-y: auto; /* Enable vertical scrollbar when content exceeds max height */
+        }
+        .star-rating-yellow {
+            color: yellow; /* Default color for stars */
+        }
+        .star-rating-gray {
+            color: gray; /* Color for inactive stars */
+        }
+        .xx{
+        color: yellow}
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">MediForecast</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/findDoctor}">Find Doctor</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/contactUs}">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+<div class="container mt-4">
+    <h2>Feedback</h2>
+    <form th:action="@{/feedback}" method="post">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required/>
+        </div>
+        <div class="form-group">
+            <label for="rating">Rating:</label>
+            <div class="rating" id="rating">
+                <input type="radio" id="star5" name="rating" value="5"/>
+                <label for="star5" title="5 stars">5 stars</label>
+                <input type="radio" id="star4" name="rating" value="4"/>
+                <label for="star4" title="4 stars">4 stars</label>
+                <input type="radio" id="star3" name="rating" value="3"/>
+                <label for="star3" title="3 stars">3 stars</label>
+                <input type="radio" id="star2" name="rating" value="2"/>
+                <label for="star2" title="2 stars">2 stars</label>
+                <input type="radio" id="star1" name="rating" value="1"/>
+                <label for="star1" title="1 star">1 star</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Feedback</button>
+    </form>
+
+    <hr/>
+	
+	 <h3>Recent Feedback</h3>
+    <div class="feedback-board" id="feedbackBoard">
+        <div class="card-columns">
+            <div th:each="feedback : ${feedbackList}" class="card">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${feedback.name}" ></h5>
+                   <h6 th:text="${feedback.createdAt}" class="card-subtitle mb-2 text-muted" ></h6> 
+                     <div >
+                   <div th:each="star : ${#numbers.sequence(1, 5)}" 
+                   style="display: inline"
+                          class="fa fa-star xxs" 
+                          th:class="${star <= feedback.rating ? 'star-rating-yellow' : 'star-rating-gray'}" ><span class="fa fa-star xxs" ></span>
+                    </div>
+                </div>
+                    <p class="card-text" th:text="${feedback.message}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center bg-body-tertiary mt-auto">
+  <!-- Grid container -->
+  <div class="container pt-4 ">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <!-- Twitter -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+      <!-- Google -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-google"></i
+      ></a>
+
+      <!-- Instagram -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-linkedin"></i
+      ></a>
+      <!-- Github -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2024 Copyright:
+    <a class="text-body" href="">MediForecast</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

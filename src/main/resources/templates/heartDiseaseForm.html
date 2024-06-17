@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MediForecast</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">MediForecast</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/feedback}">Feedback</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/findDoctor}">Find Doctor</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/contactUs}">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+<br>
+    <div class="container">
+        <h2>Enter Medical Parameters</h2>
+        <form th:action="@{/predictHeartDisease}" method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Total_Cholesterol">Total Cholesterol (mg/dL)</label>
+                        <input type="text" class="form-control" id="Total_Cholesterol" name="Total_Cholesterol">
+                    </div>
+                    <div class="form-group">
+                        <label for="LDL_Cholesterol">LDL Cholesterol (mg/dL)</label>
+                        <input type="text" class="form-control" id="LDL_Cholesterol" name="LDL_Cholesterol">
+                    </div>
+                    <div class="form-group">
+                        <label for="HDL_Cholesterol">HDL Cholesterol (mg/dL)</label>
+                        <input type="text" class="form-control" id="HDL_Cholesterol" name="HDL_Cholesterol">
+                    </div>
+                    <div class="form-group">
+                        <label for="Systolic_BP">Systolic BP (mmHg)</label>
+                        <input type="text" class="form-control" id="Systolic_BP" name="Systolic_BP">
+                    </div>
+                    <div class="form-group">
+                        <label for="Diastolic_BP">Diastolic BP (mmHg)</label>
+                        <input type="text" class="form-control" id="Diastolic_BP" name="Diastolic_BP">
+                    </div>
+                    <div class="form-group">
+                        <label for="Blood_Glucose">Blood Glucose (mg/dL)</label>
+                        <input type="text" class="form-control" id="Blood_Glucose" name="Blood_Glucose">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Troponin">Troponin (ng/mL)</label>
+                        <input type="text" class="form-control" id="Troponin" name="Troponin">
+                    </div>
+                    <div class="form-group">
+                        <label for="CK_M">CK-MB (U/L)</label>
+                        <input type="text" class="form-control" id="CK_MB" name="CK_MB">
+                    </div>
+                    <div class="form-group">
+                        <label for="LDH">LDH (U/L)</label>
+                        <input type="text" class="form-control" id="LDH" name="LDH">
+                    </div>
+                    <div class="form-group">
+                        <label for="Potassium">Potassium (mmol/L)</label>
+                        <input type="text" class="form-control" id="Potassium" name="Potassium">
+                    </div>
+                    <div class="form-group">
+                        <label for="Sodium">Sodium (mmol/L)</label>
+                        <input type="text" class="form-control" id="Sodium" name="Sodium">
+                    </div>
+                    <div class="form-group">
+                        <label for="Hemoglobin">Hemoglobin (g/dL)</label>
+                        <input type="text" class="form-control" id="Hemoglobin" name="Hemoglobin">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Red_Blood_Cells">Red Blood Cells (million/uL)</label>
+                        <input type="text" class="form-control" id="Red_Blood_Cells" name="Red_Blood_Cells">
+                    </div>
+                    <div class="form-group">
+                        <label for="White_Blood_Cells">White Blood Cells (thousand/uL)</label>
+                        <input type="text" class="form-control" id="White_Blood_Cells" name="White_Blood_Cells">
+                    </div>
+                    <div class="form-group">
+                        <label for="Platelet_Count">Platelet Count (thousand/uL)</label>
+                        <input type="text" class="form-control" id="Platelet_Count" name="Platelet_Count">
+                    </div>
+                    <div class="form-group">
+                        <label for="CRP">CRP (mg/L)</label>
+                        <input type="text" class="form-control" id="CRP" name="CRP">
+                    </div>
+                    <div class="form-group">
+                        <label for="ESR">ESR (mm/h)</label>
+                        <input type="text" class="form-control" id="ESR" name="ESR">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+<footer class="text-center bg-body-tertiary mt-auto">
+  <!-- Grid container -->
+  <div class="container pt-4 ">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <!-- Twitter -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+      <!-- Google -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-google"></i
+      ></a>
+
+      <!-- Instagram -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-linkedin"></i
+      ></a>
+      <!-- Github -->
+      <a
+        data-mdb-ripple-init
+        class="btn btn-link btn-floating btn-lg text-body m-1"
+        href="#!"
+        role="button"
+        data-mdb-ripple-color="dark"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2024 Copyright:
+    <a class="text-body" href="">MediForecast</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
